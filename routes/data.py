@@ -1,11 +1,16 @@
 from datetime import datetime
+import json
 
-from flask import request, json, Blueprint
+from flask import request, json, Blueprint, jsonify
+from flask_cors import CORS
+
+from db.mongodb import add_raw_record
 
 data_blueprint = Blueprint('data', __name__,)
+CORS(data_blueprint)
 
 
-@data_blueprint.route('/data/push', methods=['POST'])
+@data_blueprint.route('/data/push', methods=['POST', 'OPTIONS'])
 def push_data():
 
     if request.method == "POST":
@@ -25,4 +30,9 @@ def push_data():
             **headers
         }
 
-        print(json.dumps(data))
+        # TODO: Uncomment before deployment
+        # add_raw_record(json.dumps(data))
+
+        return ("Browser data received"), 200
+
+    return ("Unable to process your request"), 405

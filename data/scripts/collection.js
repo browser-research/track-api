@@ -16,6 +16,13 @@
       availWidth: screen.availWidth,
       availHeight: screen.availHeight,
     },
+    location: {
+      href: location.href,
+    },
   };
-  console.log(JSON.stringify(data));
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://<API_HOSTNAME>/data/push", true);
+  xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+  xhr.send(JSON.stringify(data));
 })();

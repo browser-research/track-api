@@ -1,11 +1,13 @@
+from utils.load_scripts import load_collection
+from flask import Flask
+
 from routes.ping import ping_blueprint
 from routes.demo import demo_blueprint
 from routes.scripts import scripts_blueprint
 from routes.data import data_blueprint
 
-from flask import Flask, render_template
-
 app = Flask(__name__)
+
 # app.config.from_object('config.ProductionConfig')
 app.config.from_object('config.DevelopmentConfig')
 
