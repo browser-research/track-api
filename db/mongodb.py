@@ -18,4 +18,4 @@ def open_db_connection():
 def add_raw_record(content):
     db = open_db_connection()
 
-    return db.raw.insert_one({"text": content}).inserted_id
+    return db.raw.insert_one(content).inserted_id

@@ -2,4 +2,5 @@ python-decouple
 flask
 flask-cors
 pymongo
+gunicorn
 

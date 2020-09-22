@@ -10,3 +10,7 @@ Open-source API for browser data gathering
 - Replace database credentials in .env
 - Activate env
 - > python app.py
+
+## Deploy in production
+- Two workers (small servers) > gunicorn -w 2 -b 127.0.0.1:4000 app:app
+- Five workers (powerful VMs) > gunicorn -w 5 -b 127.0.0.1:4000 app:app

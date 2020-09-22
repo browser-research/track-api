@@ -1,7 +1,7 @@
 from datetime import datetime
 import json
 
-from flask import request, json, Blueprint, jsonify
+from flask import request, json, Blueprint, jsonify, current_app
 from flask_cors import CORS
 
 from db.mongodb import add_raw_record
@@ -11,17 +11,17 @@ CORS(data_blueprint)
 
 
 @data_blueprint.route('/data/push', methods=['POST', 'OPTIONS'])
-def push_data():
+def data_push():
 
     if request.method == "POST":
 
         headers = {
-            "User-Agent": request.headers.get("User-Agent"),
-            "Accept-Language": request.headers.get("Accept-Language")
+            "HTTP_User-Agent": request.headers.get("User-Agent"),
+            "HTTP_Accept-Language": request.headers.get("Accept-Language")
         }
         request_data = {
-            "ip": request.remote_addr,
-            "HTTP_HOST": request.environ.get('HTTP_ORIGIN', 'default value')
+            "HTTP_REMOTE_ADDR": request.remote_addr,
+            "HTTP_ORIGIN": request.environ.get('HTTP_ORIGIN', 'default value')
         }
         data = {
             "timestamp": datetime.now().strftime("%d:%m:%Y %H:%M:%S"),
@@ -30,8 +30,12 @@ def push_data():
             **headers
         }
 
-        # TODO: Uncomment before deployment
-        # add_raw_record(json.dumps(data))
+        if current_app.config['DEVELOPMENT']:
+            # Push browser data into console instead of adding to databse
+            print(data)
+        else:
+            # Add data to dev/production database
+            add_raw_record(data)
 
         return ("Browser data received"), 200
 

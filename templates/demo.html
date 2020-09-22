@@ -6,6 +6,84 @@
     <title>Demo Page</title>
   </head>
   <body>
+    <div class="page-content">
+      <div class="container">
+        <h1 class="headline">api.browser-research.com</h1>
+        <p>
+          This page indicates what data the solution collects from its users.
+          Below you can see the actual data we aggregate in research purposes
+          only.
+        </p>
+        <h2 class="headline">Browser:</h2>
+        The solution collects data from several browser sections
+        <h3 class="headline">Navigator Object:</h3>
+        <ul>
+          <li id="navigator-useragent">
+            userAgent - <b>yours is:</b> <span></span>
+          </li>
+          <li id="navigator-language">
+            language - <b>yours is:</b> <span></span>
+          </li>
+          <li id="navigator-vendor">vendor - <b>yours is:</b> <span></span></li>
+          <li id="navigator-platform">
+            platform - <b>yours is:</b> <span></span>
+          </li>
+          <li id="navigator-appname">
+            appName - <b>yours is:</b> <span></span>
+          </li>
+          <li id="navigator-appversion">
+            appVersion - <b>yours is:</b> <span></span>
+          </li>
+        </ul>
+        <p>
+          API source code on GitHub:
+          <a href="https://github.com/browser-research/api.browser-research.com"
+            >https://github.com/browser-research/api.browser-research.com</a
+          >
+        </p>
+      </div>
+    </div>
+    <style>
+      html {
+        margin: 0px;
+        padding: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      ul {
+      }
+      .container {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 15px 15px;
+      }
+      .headline {
+        margin-bottom: 10px;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+    </style>
+    <script>
+      document.querySelector("#navigator-useragent span").innerHTML =
+        window.navigator.userAgent;
+
+      document.querySelector("#navigator-language span").innerHTML = window
+        .navigator.languages
+        ? window.navigator.languages[0]
+        : window.navigator.language || window.navigator.userLanguage;
+
+      document.querySelector("#navigator-vendor span").innerHTML =
+        window.navigator.vendor;
+
+      document.querySelector("#navigator-platform span").innerHTML =
+        window.navigator.platform;
+
+      document.querySelector("#navigator-appname span").innerHTML =
+        window.navigator.appName;
+
+      document.querySelector("#navigator-appversion span").innerHTML =
+        window.navigator.appVersion;
+    </script>
     <script src="/scripts/collection"></script>
   </body>
 </html>

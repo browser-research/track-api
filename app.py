@@ -17,6 +17,5 @@ app.register_blueprint(demo_blueprint)
 app.register_blueprint(scripts_blueprint)
 app.register_blueprint(data_blueprint)
 
-
 if __name__ == "__main__":
     app.run()
