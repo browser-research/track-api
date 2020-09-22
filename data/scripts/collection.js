@@ -1,8 +1,6 @@
 (function () {
   let checkCookie = () => {
-    return document.cookie.match(
-      /^(.*;)?\s*api.browser-research.com\s*=\s*[^;]+(.*)?$/
-    );
+    return document.cookie.match(/^(.*;)?\s*<API_HOSTNAME>\s*=\s*[^;]+(.*)?$/);
   };
 
   let setCookie = () => {
@@ -10,7 +8,7 @@
     d.setTime(d.getTime() + 7 * 24 * 60 * 60 * 1000);
     var expires = "expires=" + d.toUTCString();
     document.cookie =
-      "api.browser-research.com" +
+      "<API_HOSTNAME>" +
       "=" +
       `data-submitted` +
       ";" +
