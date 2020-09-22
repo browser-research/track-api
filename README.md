@@ -5,10 +5,10 @@ Open-source API for browser data gathering
 ## Steps to run
 
 - > virtualenv .venv
+- Activate env and make sure that virtualenv is using Python 3
 - > pip install -r .\requirements.txt
 - Copy .env-sample and save as .env
 - Replace database credentials in .env
-- Activate env
 - > python app.py
 
 ## Deploy in production
