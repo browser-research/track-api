@@ -8,8 +8,8 @@ from routes.data import data_blueprint
 
 app = Flask(__name__)
 
-# app.config.from_object('config.ProductionConfig')
-app.config.from_object('config.DevelopmentConfig')
+app.config.from_object('config.ProductionConfig')
+# app.config.from_object('config.DevelopmentConfig')
 
 # Routes registration
 app.register_blueprint(ping_blueprint)
