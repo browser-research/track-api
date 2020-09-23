@@ -42,20 +42,18 @@
       },
     };
 
-    let makeRequest = new Promise(
-      (resolve, reject) => {
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://<API_HOSTNAME>/data/push", true);
-        xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    let makeRequest = new Promise((resolve, reject) => {
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "https://<API_HOSTNAME>/data/push", true);
+      xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
 
-        xhr.onload = function () {
-          if (xhr.status = 200) resolve(xhr);
-        };
+      xhr.onload = function () {
+        if ((xhr.status = 200)) resolve(xhr);
+      };
 
-        xhr.send(JSON.stringify(data));
-      }
-    ).then(xhr => {
-      setCookie()
-    })
+      xhr.send(JSON.stringify(data));
+    }).then((xhr) => {
+      setCookie();
+    });
   }
 })();

@@ -32,7 +32,7 @@ def data_push():
         }
 
         if current_app.config['DEVELOPMENT']:
-            # Push browser data into console instead of adding to databse
+            # Push browser data into console instead of adding to database
             print(data)
         else:
             # Add data to dev/production database
