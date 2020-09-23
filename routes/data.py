@@ -2,15 +2,16 @@ from datetime import datetime
 import json
 
 from flask import request, json, Blueprint, jsonify, current_app
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 from db.mongodb import add_raw_record
 
 data_blueprint = Blueprint('data', __name__,)
-CORS(data_blueprint)
+CORS(data_blueprint, supports_credentials=True)
 
 
 @data_blueprint.route('/data/push', methods=['POST', 'OPTIONS'])
+@cross_origin()
 def data_push():
 
     if request.method == "POST":
