@@ -3,6 +3,7 @@
 Open-source API for browser data gathering
 
 ## Steps to run
+
 - virtualenv .venv
 - Activate env and make sure that virtualenv is using Python 3
 - pip install -r .\requirements.txt
@@ -13,5 +14,6 @@ Open-source API for browser data gathering
 - Replace 127.0.0.1 to localhost to avoid CORS issues
 
 ## Deploy in production
-- One worker (tiny servers) > gunicorn -w 1 -b 127.0.0.1:5000 app:app
-- Five workers (powerful VMs) > gunicorn -w 5 -b 127.0.0.1:5000 app:app
+
+- One worker (tiny servers) > gunicorn -w 1 -b 127.0.0.1:5005 app:app
+- Five workers (powerful VMs) > gunicorn -w 5 -b 127.0.0.1:5005 app:app
