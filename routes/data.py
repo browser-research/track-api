@@ -16,12 +16,17 @@ def data_push():
 
     if request.method == "POST":
 
+        if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+            ip = request.environ['REMOTE_ADDR']
+        else:
+            ip = request.environ['HTTP_X_FORWARDED_FOR']
+
         headers = {
             "HTTP_User-Agent": request.headers.get("User-Agent"),
             "HTTP_Accept-Language": request.headers.get("Accept-Language")
         }
         request_data = {
-            "HTTP_REMOTE_ADDR": request.remote_addr,
+            "HTTP_REMOTE_ADDR": ip,
             "HTTP_ORIGIN": request.environ.get('HTTP_ORIGIN', 'default value')
         }
         data = {
