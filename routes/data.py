@@ -4,22 +4,23 @@ import json
 from flask import request, json, Blueprint, jsonify, current_app
 from flask_cors import CORS, cross_origin
 
-from db.mongodb import add_raw_record
-
-data_blueprint = Blueprint('data', __name__,)
+data_blueprint = Blueprint("data", __name__,)
 CORS(data_blueprint, supports_credentials=True)
 
 
-@data_blueprint.route('/data/push', methods=['POST', 'OPTIONS'])
+@data_blueprint.route("/data/push", methods=["POST", "OPTIONS"])
 @cross_origin()
 def data_push():
 
     if request.method == "POST":
 
-        if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
-            ip = request.environ['REMOTE_ADDR']
+        if request.environ.get("HTTP_X_FORWARDED_FOR") is None:
+            ip = request.environ["REMOTE_ADDR"]
         else:
-            ip = request.environ['HTTP_X_FORWARDED_FOR']
+            ip = request.environ["HTTP_X_FORWARDED_FOR"]
+
+        if "," in ip:
+            ip = ip.split(",")[0]
 
         headers = {
             "HTTP_User-Agent": request.headers.get("User-Agent"),
@@ -27,7 +28,7 @@ def data_push():
         }
         request_data = {
             "HTTP_REMOTE_ADDR": ip,
-            "HTTP_ORIGIN": request.environ.get('HTTP_ORIGIN', 'default value')
+            "HTTP_ORIGIN": request.environ.get("HTTP_ORIGIN", "default value")
         }
         data = {
             "timestamp": datetime.now().strftime("%d:%m:%Y %H:%M:%S"),
@@ -36,12 +37,11 @@ def data_push():
             **headers
         }
 
-        if current_app.config['DEVELOPMENT']:
+        if current_app.config["ENV"] == "DEVELOPMENT":
             # Push browser data into console instead of adding to database
             print(data)
         else:
-            # Add data to dev/production database
-            add_raw_record(data)
+            current_app.mongo_client.insert_one("raw", data)
 
         return ("Browser data received"), 200
 

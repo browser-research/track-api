@@ -1,4 +1,4 @@
-python-decouple
+python-dotenv
 flask
 flask-cors
 pymongo

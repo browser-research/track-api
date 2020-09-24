@@ -44,7 +44,7 @@
 
     let makeRequest = new Promise((resolve, reject) => {
       let xhr = new XMLHttpRequest();
-      xhr.open("POST", "https://<API_HOSTNAME>/data/push", true);
+      xhr.open("POST", "http://<API_HOSTNAME>/data/push", true);
       xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
 
       xhr.onload = function () {

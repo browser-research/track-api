@@ -1,11 +1,8 @@
-from utils.load_scripts import load_collection
+from flask import Blueprint, current_app
 
-from flask import Blueprint
-scripts_blueprint = Blueprint('scripts', __name__,)
-
-collection_content = load_collection()
+scripts_blueprint = Blueprint("scripts", __name__,)
 
 
-@scripts_blueprint.route('/scripts/collection')
+@scripts_blueprint.route("/scripts/collection")
 def get_script():
-    return collection_content
+    return current_app.collection_content
