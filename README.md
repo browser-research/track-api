@@ -1,4 +1,4 @@
-# Tracker API
+# Track API
 
 This tiny application is a gateway that provides a tracking script and processes incoming requests from the client-side. Tracker collects elementary browser data, transforms information into the structured JSON, and pushes the JSON to a local/remote MongoDB database.
 
@@ -19,10 +19,10 @@ This tiny application is a gateway that provides a tracking script and processes
 
 **Step #3:** Install requirements:
 
-> pip install -r .\requirements.txt
+> pip install -r ./requirements.txt
 
 **Step #4:** Copy .env-sample and save as .env  
-**Step #5:** Replace database credentials and TRACKER_HOSTNAME in .env  
+**Step #5:** Replace database credentials and TRACK_HOSTNAME in .env  
 **Step #6:** Run application:
 
 > python app.py
@@ -37,9 +37,21 @@ gunicorn -w 1 -b 127.0.0.1:5005 app:app
 **Start Tracker API with N workers:**  
 gunicorn -w N -b 127.0.0.1:5005 app:app
 
+## Integration:
+
+Add the following code right before the end of the `<body>` tag:
+
+```
+<script src="https://track.browser-research.com/scripts/collection" defer=""></script>
+```
+
 ## Notes:
 
 - For config example of systemctl service check systemctl.service-sample
 - The deployment post is 5005, while development is 5000
-- Application is deployed at https://tracker.browsere-research.com
+- Application is deployed at https://track.browser-research.com
 - Single Tracker instance consumes as less as 35MB of RAM, what makes it possible to deploy application at tiny VMs (with as less as 256MB of RAM).
+
+## Contact
+
+For any inquiries drop a line to brwsr.rsrch@gmail.com

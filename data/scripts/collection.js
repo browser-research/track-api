@@ -1,7 +1,7 @@
 (function () {
   let checkCookie = () => {
     return document.cookie.match(
-      /^(.*;)?\s*<TRACKER_HOSTNAME>\s*=\s*[^;]+(.*)?$/
+      /^(.*;)?\s*<TRACK_HOSTNAME>\s*=\s*[^;]+(.*)?$/
     );
   };
 
@@ -10,7 +10,7 @@
     d.setTime(d.getTime() + 7 * 24 * 60 * 60 * 1000);
     var expires = "expires=" + d.toUTCString();
     document.cookie =
-      "<TRACKER_HOSTNAME>" +
+      "<TRACK_HOSTNAME>" +
       "=" +
       `data-submitted` +
       ";" +
@@ -18,7 +18,7 @@
       ";path=/;SameSite=Lax";
   };
 
-  if (!checkCookie("<TRACKER_HOSTNAME>")) {
+  if (!checkCookie("<TRACK_HOSTNAME>")) {
     const navigator = window.navigator;
     const screen = window.screen;
 
@@ -46,7 +46,7 @@
 
     let makeRequest = new Promise((resolve, reject) => {
       let xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://<TRACKER_HOSTNAME>/data/push", true);
+      xhr.open("POST", "http://<TRACK_HOSTNAME>/data/push", true);
       xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
 
       xhr.onload = function () {

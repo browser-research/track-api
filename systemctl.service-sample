@@ -4,8 +4,26 @@ After=network.target
 
 [Service]
 User=root
+WorkingDirectory=/home/domain.com/www/
+VIRTUAL_ENV=/home/domain.com/www/.venv/
+Environment=PATH=$VIRTUAL_ENV/bin:$PATH
+ExecStart=/home/domain.com/www/.venv/bin/gunicorn -w 1 -b 127.0.0.1:5005 app:app
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+
+-- or --
+
+
+[Unit]
+Description="domain.com"
+After=network.target
+
+[Service]
+User=root
 WorkingDirectory=/home/domain.com/www
-Environment=PYTHONPATH=/home/domain.com/www/.venv/bin
 ExecStart=/home/domain.com/www/.venv/bin/gunicorn -w 1 -b 127.0.0.1:5005 app:app
 Restart=on-failure
 
