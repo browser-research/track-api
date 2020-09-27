@@ -1,19 +1,44 @@
-# api.browser-research.com
+# Tracker API
 
-Open-source API for browser data gathering
+The repository is dedicated to the Tracker API. This tiny application is a gateway that provides a tracking script and processes incoming requests from the client-side. Tracker collects elementary browser data, transforms information into the structured JSON, and pushes the JSON to a local/remote MongoDB database.
 
-## Steps to run
+**Requirements:**
 
-- virtualenv .venv
-- Activate env and make sure that virtualenv is using Python 3
-- pip install -r .\requirements.txt
-- Copy .env-sample and save as .env
-- Replace database credentials in .env
-- Replace API_HOSTNAME in .env with localhost (make sure that port matches) or production domain
-- python app.py
-- Replace 127.0.0.1 to localhost to avoid CORS issues
+- Python >3.4
+- MongoDB >4.0
 
-## Deploy in production
+## Steps to run:
 
-- One worker (tiny servers) > gunicorn -w 1 -b 127.0.0.1:5005 app:app
-- Five workers (powerful VMs) > gunicorn -w 5 -b 127.0.0.1:5005 app:app
+**Step #1:** Create virtualenv:
+
+> virtualenv .venv
+
+**Step #2:** Activate env:
+
+> source ./.venv/bin/activate
+
+**Step #3:** Install requirements:
+
+> pip install -r .\requirements.txt
+
+**Step #4:** Copy .env-sample and save as .env  
+**Step #5:** Replace database credentials and TRACKER_HOSTNAME in .env  
+**Step #6:** Run application:
+
+> python app.py
+
+## Deployment:
+
+As the application is built around Flask (Python single-treaded framework), the simplest way to increase application performance is to run Tracker using multiple workers. For that reason, we recommend you using Nginx as a proxy server, and Gunicorn as the application server. The example of Nginx configuration you may find in nginx.conf-sample. Also, remember to change ENV value from DEVELOPMENT to PRODUCTION.
+
+**Start Tracker API with single gunicorn worker (small VMs):**  
+gunicorn -w 1 -b 127.0.0.1:5005 app:app
+
+**Start Tracker API with N workers:**  
+gunicorn -w N -b 127.0.0.1:5005 app:app
+
+## Notes:
+
+- For config example of systemctl service check systemctl.service-sample
+- The deployment post is 5005, while development is 5000
+- Application is deployed at https://tracker.browsere-research.com

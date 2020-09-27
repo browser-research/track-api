@@ -24,7 +24,7 @@ app.register_blueprint(data_blueprint)
 
 # Setting some global vars
 app.collection_content = load_collection(
-    app.config["API_HOSTNAME"], app.config["ENV"])
+    app.config["TRACKER_HOSTNAME"], app.config["ENV"])
 
 app.mongo_client = MongoSession(app.config["DATABASE_USER"], app.config["DATABASE_PASS"],
                                 app.config["DATABASE_HOST"], app.config["DATABASE_PORT"], app.config["DATABASE_NAME"])
