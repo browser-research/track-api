@@ -1,6 +1,6 @@
 # Tracker API
 
-The repository is dedicated to the Tracker API. This tiny application is a gateway that provides a tracking script and processes incoming requests from the client-side. Tracker collects elementary browser data, transforms information into the structured JSON, and pushes the JSON to a local/remote MongoDB database.
+This tiny application is a gateway that provides a tracking script and processes incoming requests from the client-side. Tracker collects elementary browser data, transforms information into the structured JSON, and pushes the JSON to a local/remote MongoDB database.
 
 **Requirements:**
 
@@ -29,7 +29,7 @@ The repository is dedicated to the Tracker API. This tiny application is a gatew
 
 ## Deployment:
 
-As the application is built around Flask (Python single-treaded framework), the simplest way to increase application performance is to run Tracker using multiple workers. For that reason, we recommend you using Nginx as a proxy server, and Gunicorn as the application server. The example of Nginx configuration you may find in nginx.conf-sample. Also, remember to change ENV value from DEVELOPMENT to PRODUCTION.
+As the application is built around Flask (Python single-treaded framework), the simplest way to increase application performance is to run Tracker using multiple workers. For that reason, we recommend you using Nginx as a proxy server, and Gunicorn as the application server. The example of Nginx configuration you may find in nginx.conf-sample. Also, remember to change ENV value at .env from DEVELOPMENT to PRODUCTION.
 
 **Start Tracker API with single gunicorn worker (small VMs):**  
 gunicorn -w 1 -b 127.0.0.1:5005 app:app
@@ -42,3 +42,4 @@ gunicorn -w N -b 127.0.0.1:5005 app:app
 - For config example of systemctl service check systemctl.service-sample
 - The deployment post is 5005, while development is 5000
 - Application is deployed at https://tracker.browsere-research.com
+- Single Tracker instance consumes as less as 35MB of RAM, what makes it possible to deploy application at tiny VMs (with as less as 256MB of RAM).
