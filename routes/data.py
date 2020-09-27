@@ -19,7 +19,7 @@ def data_push():
         else:
             ip = request.environ["HTTP_X_FORWARDED_FOR"]
 
-        if "," in ip:
+        if "," in ip and ip is not None:
             ip = ip.split(",")[0]
 
         headers = {

@@ -7,7 +7,7 @@ This tiny application is a gateway that provides a tracking script and processes
 - Python >3.4
 - MongoDB >4.0
 
-## Steps to run:
+## How to run:
 
 **Step #1:** Create virtualenv:
 
@@ -48,9 +48,9 @@ Add the following code right before the end of the `<body>` tag:
 ## Notes:
 
 - For config example of systemctl service check systemctl.service-sample
-- The deployment post is 5005, while development is 5000
+- The deployment port is 5005, while development is 5000
 - Application is deployed at https://track.browser-research.com
-- Single Tracker instance consumes as less as 35MB of RAM, what makes it possible to deploy application at tiny VMs (with as less as 256MB of RAM).
+- Single Tracker instance consumes as little as 35MB of RAM, what makes it possible to deploy application at tiny VMs (with 256MB of RAM).
 
 ## Contact
 

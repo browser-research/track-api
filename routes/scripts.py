@@ -4,5 +4,5 @@ scripts_blueprint = Blueprint("scripts", __name__,)
 
 
 @scripts_blueprint.route("/scripts/collection")
-def get_script():
+def collection():
     return current_app.collection_content
