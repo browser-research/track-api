@@ -4,8 +4,8 @@ This tiny application is a gateway that provides a tracking script and processes
 
 **Requirements:**
 
-- Python >3.4
-- MongoDB >4.0
+- Python >= 3.6
+- MongoDB >= 4.0
 
 ## How to run:
 
@@ -42,16 +42,17 @@ gunicorn -w N -b 127.0.0.1:5005 app:app
 Add the following code right before the end of the `<body>` tag:
 
 ```
-<script src="https://track.browser-research.com/scripts/collection" defer=""></script>
+<script src="https://yourfancydomain.com/scripts/collection" defer=""></script>
 ```
 
-## Notes:
+## Routes:
 
-- For config example of systemctl service check systemctl.service-sample
-- The deployment port is 5005, while development is 5000
-- Application is deployed at https://track.browser-research.com
-- Single Tracker instance consumes as little as 35MB of RAM, what makes it possible to deploy application at tiny VMs (with 256MB of RAM).
+- /ping, Methods: "GET" - Route is required for alive-tracking
+- /scripts/collection, Methods: "GET" - Route serves tracking script (cached from app initialization)
+- /demo, Methods: "GET" - Route shows demo page, which contains data Tracking API collects
+- /data/push, Methods: "POST", "OPTIONS" - Route is a gateway, that processes data from the tracking script (sent from the client-side)
 
-## Contact
+## Contact:
 
-For any inquiries drop a line to brwsr.rsrch@gmail.com
+- Project email: brwsr.rsrch at gmail.com
+- Maintainer's email: konstantin.lebejko at gmail.com
