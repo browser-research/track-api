@@ -29,7 +29,7 @@ This tiny application is a gateway that provides a tracking script and processes
 
 ## Deployment:
 
-As the application is built around Flask (Python single-treaded framework), the simplest way to increase application performance is to run Tracker using multiple workers. For that reason, we recommend you using Nginx as a proxy server, and Gunicorn as the application server. The example of Nginx configuration you may find in nginx.conf-sample. Also, remember to change ENV value at .env from DEVELOPMENT to PRODUCTION.
+As the application is built around Flask (Python single-treaded framework), the simplest way to increase application performance is to run Tracker using multiple workers. For that reason, we recommend you using Nginx as a proxy server, and Gunicorn as the application server.
 
 **Start Tracker API with single gunicorn worker (small VMs):**  
 gunicorn -w 1 -b 127.0.0.1:5005 app:app
