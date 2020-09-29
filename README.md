@@ -48,7 +48,7 @@ Add the following code right before the end of the `<body>` tag:
 ## Routes:
 
 - /ping, Methods: "GET" - Route is required for alive-tracking
-- /scripts/collection, Methods: "GET" - Route serves tracking script (cached from app initialization)
+- /scripts/collection, Methods: "GET" - Route serves tracking script (cached since app initialization)
 - /demo, Methods: "GET" - Route shows demo page, which contains data Tracking API collects
 - /data/push, Methods: "POST", "OPTIONS" - Route is a gateway, that processes data from the tracking script (sent from the client-side)
 
