@@ -1,7 +1,6 @@
-import os
-
 from dotenv import load_dotenv
-from flask import Flask, g
+from flask import Flask
+
 from utils.load_scripts import load_collection
 from models.mongodb import MongoSession
 
@@ -9,9 +8,6 @@ from routes.ping import ping_blueprint
 from routes.demo import demo_blueprint
 from routes.scripts import scripts_blueprint
 from routes.data import data_blueprint
-
-# Load .env vars
-load_dotenv(verbose=True)
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
